@@ -9,10 +9,10 @@ module.exports.config = {
    * @type ?Object|boolean
    */
   serviceWorker: {
-    cacheName: "AnZhiYuThemeCache"
+    cacheName: "AnZhiYuThemeCache",
   },
   register: {
-    onerror: undefined
+    onerror: undefined,
   },
   dom: {
     onsuccess: () => {
@@ -31,7 +31,7 @@ module.exports.config = {
     },
   },
   json: {
-    merge: ['page', 'archives', 'categories', 'tags']
+    merge: ['page', 'archives', 'categories', 'tags'],
   },
   external: {
     stable: [

@@ -470,8 +470,8 @@ document.addEventListener("DOMContentLoaded", function () {
       ele.forEach(item => {
         item.classList.contains("url")
           ? fetchUrl(item.textContent).then(res => {
-              runJustifiedGallery(item, res);
-            })
+            runJustifiedGallery(item, res);
+          })
           : runJustifiedGallery(item, JSON.parse(item.textContent));
       });
     };
@@ -1714,6 +1714,15 @@ document.addEventListener("DOMContentLoaded", function () {
       executeShortcutKeyFunction();
     }
     if (GLOBAL_CONFIG.autoDarkmode) {
+      // 从本地存储中获取主题模式（"theme"），并设置默认值为 "light"
+      const mode = saveToLocal.get("theme") || "light";
+
+      // 获取右菜单中的深色模式文本元素
+      const menuDarkmodeText = $rightMenu.querySelector(".menu-darkmode-text");
+
+      // 根据主题模式设置文本内容
+      menuDarkmodeText.textContent = mode === "light" ? "深色模式" : "浅色模式";
+      // console.info(window.matchMedia("(prefers-color-scheme: dark)"));
       window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", e => {
         if (saveToLocal.get("theme") !== undefined) return;
         e.matches ? handleThemeChange("dark") : handleThemeChange("light");
